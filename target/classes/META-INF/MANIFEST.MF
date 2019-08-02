@@ -1,29 +1,5 @@
 Manifest-Version: 1.0
-Astah-Edition: all
-Astah-Version: 6.7
-Bnd-LastModified: 1564484711597
-Build-Jdk: 1.8.0_222
-Built-By: tomo
-Bundle-Activator: cv.Activator
-Bundle-ClassPath: .,markdownj-core-0.4.jar
-Bundle-Description: %bundle.description
-Bundle-ManifestVersion: 2
-Bundle-Name: %bundle.name
-Bundle-SymbolicName: cv.astah-book; singleton:=true
-Bundle-Version: 1.0.0.SNAPSHOT
-Created-By: Apache Maven Bundle Plugin
-Embed-Dependency: *;scope=compile|runtime;type=!pom
-Embed-Transitive: true
-Embedded-Artifacts: markdownj-core-0.4.jar;g="org.markdownj";a="markdown
- j-core";v="0.4"
-Export-Package: cv;version="1.0.0.SNAPSHOT";uses:="com.change_vision.jud
- e.api.inf.ui,javax.swing,org.osgi.framework"
-Import-Package: com.change_vision.jude.api.inf;resolution:=optional,com.
- change_vision.jude.api.inf.model;resolution:=optional,com.change_vision
- .jude.api.inf.presentation;resolution:=optional,com.change_vision.jude.
- api.inf.project;resolution:=optional,com.change_vision.jude.api.inf.ui;
- resolution:=optional,com.change_vision.jude.api.inf.view;resolution:=op
- tional,javax.swing;resolution:=optional,org.osgi.framework;resolution:=
- optional;version="[1.5,2)"
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
-Tool: Bnd-3.3.0.201609221906
+Built-By: TomohiroIwanaga
+Build-Jdk: 1.8.0_201
+Created-By: Maven Integration for Eclipse
+

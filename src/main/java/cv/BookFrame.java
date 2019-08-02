@@ -2,6 +2,7 @@ package cv;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Arrays;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -12,7 +13,11 @@ import com.change_vision.jude.api.inf.model.IElement;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.presentation.IPresentation;
 import com.change_vision.jude.api.inf.view.IDiagramViewManager;
-import com.petebevin.markdown.MarkdownProcessor;
+import com.vladsch.flexmark.ext.tables.TablesExtension;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.ast.Node;
+import com.vladsch.flexmark.util.data.MutableDataSet;
 
 public class BookFrame extends JFrame {
 	/**
@@ -41,8 +46,7 @@ public class BookFrame extends JFrame {
 			AstahAPI api = AstahAPI.getAstahAPI();
 			IDiagramViewManager viewMan = api.getProjectAccessor().getViewManager().getDiagramViewManager();
 			IPresentation[] selectedPs = viewMan.getSelectedPresentations();
-			MarkdownProcessor mark2html = new MarkdownProcessor();
-			html = mark2html.markdown(getMarkDown(selectedPs));
+			html = MarkDown2Html(getMarkDown(selectedPs));
 			HTMLPanel.setText(html);
 		} catch (Exception e) {
 			// TOO: handle exception
@@ -57,6 +61,19 @@ public class BookFrame extends JFrame {
 			}
 		}
 		return null;
+	}
+	
+	private String MarkDown2Html(String markDown) {
+	    MutableDataSet options = new MutableDataSet();
+	    options.set(Parser.FENCED_CODE_BLOCK_PARSER,false);
+	    options.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create()));
+	    Parser parser = Parser.builder(options).build();
+        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
+
+        // You can re-use parser and renderer instances
+        Node document = parser.parse(markDown);
+        String viewHtml = renderer.render(document);  // "<p>This is <em>Sparta</em></p>\n"
+	    return viewHtml;
 	}
 
 	public static BookFrame getInstance() {
